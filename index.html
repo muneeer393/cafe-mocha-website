@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafe Mocha North Reef Road, Sunnyrock</title>
+<meta name="description" content="Cafe Mocha proper coffee, fresh bites and a warm welcome at Engen Sunnyrock, 140 North Reef Road, Germiston.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   TOKENS
+   ============================================ */
+:root{
+  /* colour sampled from the neon shop sign */
+  --bg:           #0a0a0b;   /* base charcoal-black */
+  --bg-elevated:  #141417;   /* card surface */
+  --bg-elevated-2:#1c1c20;   /* card surface, hover/active */
+  --line:         rgba(255,255,255,0.09);
+  --line-strong:  rgba(255,255,255,0.16);
+
+  --text:         #f5f5f2;   /* off-white body copy */
+  --text-muted:   #a4a4aa;   /* secondary copy */
+
+  /* Updated colors based on R3BOOTED logo */
+  --orange:       #E2A24C;   
+  --orange-soft:  #ebb971;
+  --orange-glow:  rgba(226, 162, 76, 0.45);
+
+  /* New Deep Blue Color Palette */
+  --blue:         #057fda;   
+  --blue-soft:    #3299ee;
+  --blue-glow:    rgba(5, 127, 218, 0.45);
+
+  --font-display: 'Outfit', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-script:  'Caveat', cursive;
+
+  --container: 1180px;
+  --radius: 16px;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+img,svg{ display:block; max-width:100%; }
+
+a{ color:inherit; text-decoration:none; }
+
+ul{ list-style:none; }
+
+.container{
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 24px;
+}
+
+section{ position:relative; }
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:13px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--blue-soft);
+  margin-bottom:18px;
+}
+.eyebrow::before{
+  content:"";
+  width:8px; height:8px;
+  border-radius:50%;
+  background:var(--orange);
+  box-shadow:0 0 10px 2px var(--orange-glow);
+}
+/* Utility class to hide the orange dot */
+.eyebrow.no-circle::before {
+  display: none;
+}
+
+h1,h2,h3{
+  font-family:var(--font-display);
+  font-weight:700;
+  color:var(--orange);
+  line-height:1.08;
+}
+
+h1{ font-size:clamp(2.4rem, 5.4vw, 4.2rem); letter-spacing:-.01em; }
+h2{ font-size:clamp(1.9rem, 3.6vw, 2.8rem); }
+h3{ font-size:1.1rem; color:var(--text); }
+
+p{ color:var(--text-muted); max-width:54ch; }
+
+.script{
+  font-family:var(--font-script);
+  font-weight:600;
+  color:var(--blue-soft);
+  font-size:1.5rem;
+  display:inline-block;
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:.95rem;
+  padding:14px 28px;
+  border-radius:999px;
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+  white-space:nowrap;
+}
+.btn:focus-visible{ outline:2px solid var(--blue-soft); outline-offset:3px; }
+.btn-primary{
+  background:var(--blue);
+  color:#fff; /* Changed to white for excellent readability on the richer blue background */
+  box-shadow:0 0 0 0 var(--blue-glow);
+}
+.btn-primary:hover{
+  box-shadow:0 6px 28px -4px var(--blue-glow);
+  transform:translateY(-2px);
+}
+.btn-ghost{
+  background:transparent;
+  border-color:var(--line-strong);
+  color:var(--text);
+}
+.btn-ghost:hover{
+  border-color:var(--orange);
+  color:var(--orange);
+  transform:translateY(-2px);
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+header{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:100;
+  background:rgba(10,10,11,0.72);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:76px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.15rem;
+  letter-spacing:.01em;
+}
+/* Added border-radius and object-fit to crop the image */
+.brand .mark{ width:42px; height:42px; flex-shrink:0; border-radius: 50%; object-fit: cover; }
+.brand .word b{ color:var(--orange); }
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:40px;
+}
+.nav-links a{
+  font-size:.95rem;
+  font-weight:500;
+  color:var(--text-muted);
+  position:relative;
+  padding:6px 0;
+  transition:color .2s ease;
+}
+.nav-links a:hover{ color:var(--text); }
+.nav-links a::after{
+  content:"";
+  position:absolute; left:0; bottom:0;
+  width:0; height:2px;
+  background:var(--orange);
+  transition:width .25s ease;
+}
+.nav-links a:hover::after{ width:100%; }
+
+.nav-cta{ display:flex; align-items:center; gap:20px; }
+
+.burger{
+  display:none;
+  width:40px; height:40px;
+  border-radius:10px;
+  border:1px solid var(--line-strong);
+  background:transparent;
+  cursor:pointer;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+}
+.burger span{ width:18px; height:2px; background:var(--text); transition:.25s ease; }
+.burger.active span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.burger.active span:nth-child(2){ opacity:0; }
+.burger.active span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+.mobile-menu{
+  display:none;
+  position:fixed;
+  top:76px; left:0; right:0;
+  background:rgba(10,10,11,0.98);
+  border-bottom:1px solid var(--line);
+  padding:8px 24px 28px;
+  flex-direction:column;
+  gap:4px;
+}
+.mobile-menu a{
+  padding:14px 4px;
+  font-size:1.05rem;
+  font-weight:500;
+  color:var(--text);
+  border-bottom:1px solid var(--line);
+}
+.mobile-menu .btn{ margin-top:16px; width:100%; }
+.mobile-menu.open{ display:flex; }
+
+/* ============================================
+   HERO / ABOUT
+   ============================================ */
+#about{
+  padding:168px 0 96px;
+  background:
+    radial-gradient(circle at 85% 8%, rgba(5, 127, 218, 0.16), transparent 45%),
+    radial-gradient(circle at 8% 95%, rgba(226, 162, 76, 0.10), transparent 45%);
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:64px;
+  align-items:center;
+}
+.hero-copy .script{ margin-bottom:6px; }
+.hero-copy h1{ margin-bottom:22px; }
+.hero-copy h1 span{ color:var(--text); }
+.hero-copy p{ font-size:1.05rem; margin-bottom:34px; }
+.hero-actions{ display:flex; gap:16px; flex-wrap:wrap; }
+
+.hero-visual{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+}
+.neon-logo{ width:100%; max-width:480px; margin:0 auto; height:auto; }
+
+
+/* feature strip */
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  margin-top:88px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.feature{
+  padding:30px 28px;
+  border-right:1px solid var(--line);
+}
+.feature:last-child{ border-right:none; }
+.feature .icon{
+  width:34px; height:34px;
+  margin-bottom:16px;
+  color:var(--blue-soft);
+}
+.feature h3{ margin-bottom:6px; font-size:1.05rem; }
+.feature p{ font-size:.92rem; margin:0; max-width:none; }
+
+/* ============================================
+   MENU
+   ============================================ */
+#menu{ padding:120px 0; }
+.section-head{ max-width:640px; margin-bottom:56px; }
+.section-head p{ font-size:1.02rem; }
+
+.menu-block{ margin-bottom:64px; }
+.menu-block-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:24px;
+  margin-bottom:28px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--line-strong);
+}
+.menu-block-head h3{
+  font-family:var(--font-display);
+  font-size:1.4rem;
+  color:var(--orange);
+}
+.menu-block-head span{ color:var(--text-muted); font-size:.85rem; }
+
+/* hot drinks table */
+.drinks-table{ width:100%; border-collapse:collapse; }
+.drinks-table thead th{
+  text-align:left;
+  font-size:.8rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  font-weight:600;
+  padding-bottom:12px;
+}
+.drinks-table thead th:not(:first-child),
+.drinks-table tbody td:not(:first-child){ text-align:right; width:110px; }
+.drinks-table tbody tr{ border-top:1px solid var(--line); }
+.drinks-table tbody td{ padding:16px 0; }
+.drinks-table tbody td:first-child{ font-weight:600; font-size:1.02rem; }
+.drinks-table tbody td.price{ font-family:var(--font-display); font-weight:600; color:var(--text); }
+
+.menu-layout{ display:grid; grid-template-columns:1.5fr 1fr; gap:48px; align-items:start; }
+
+.special-card{
+  background:linear-gradient(165deg, rgba(5, 127, 218, 0.14), rgba(5, 127, 218, 0.03));
+  border:1px solid rgba(5, 127, 218, 0.35);
+  border-radius:var(--radius);
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+}
+.special-card::before{
+  content:"";
+  position:absolute; inset:0;
+  box-shadow:inset 0 0 60px rgba(5, 127, 218, 0.12);
+  pointer-events:none;
+}
+.special-card .script{ font-size:1.3rem; margin-bottom:2px; }
+.special-card h3{ font-size:1.25rem; margin-bottom:8px; color:var(--text); }
+.special-card p{ font-size:.92rem; margin-bottom:20px; }
+.special-prices{ display:flex; gap:28px; }
+.special-prices div{ }
+.special-prices .label{ display:block; font-size:.78rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; }
+.special-prices .amount{ font-family:var(--font-display); font-size:1.7rem; font-weight:700; color:var(--orange); }
+
+/* combos */
+.combo-cols{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+.combo-group {
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.combo-group h4{
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:.95rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--orange);
+  margin-bottom:16px;
+  padding-bottom:12px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.combo-row{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+  font-size:.95rem;
+}
+.combo-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.combo-row .price{ font-family:var(--font-display); font-weight:600; color:var(--text); white-space:nowrap; }
+
+/* ============================================
+   FIND US
+   ============================================ */
+#find-us{ padding:120px 0 110px; }
+.map-frame{
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:0 0 0 1px rgba(5, 127, 218, 0.0), 0 30px 60px -30px rgba(5, 127, 218, 0.25);
+  margin-bottom:48px;
+}
+.map-frame iframe{ width:100%; height:380px; border:0; filter:grayscale(.15) contrast(1.05); display:block; }
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.contact-card{
+  background:var(--bg-elevated);
+  padding:30px 28px;
+}
+.contact-card .icon{ width:28px; height:28px; color:var(--orange); margin-bottom:16px; }
+.contact-card h3{ font-size:.95rem; text-transform:uppercase; letter-spacing:.06em; color:var(--text-muted); font-weight:600; margin-bottom:10px; }
+.contact-card .value{ font-size:1.05rem; font-weight:500; color:var(--text); line-height:1.5; }
+.contact-card .value a:hover{ color:var(--blue-soft); }
+.contact-card .note{ display:block; margin-top:8px; font-size:.78rem; color:var(--text-muted); font-style:italic; }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer{
+  border-top:1px solid var(--line);
+  padding:48px 0 36px;
+}
+.footer-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:20px;
+}
+.footer-brand{ display:flex; align-items:center; gap:12px; }
+/* Added border-radius and object-fit to crop the image */
+.footer-brand .mark{ width:34px; height:34px; border-radius: 50%; object-fit: cover; }
+.footer-brand span{ font-family:var(--font-display); font-weight:700; }
+footer .script{ font-size:1.1rem; }
+.footer-meta{ color:var(--text-muted); font-size:.85rem; }
+
+.footer-credit {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+.footer-credit a {
+  display: inline-block;
+  font-weight: 700;
+  transition: opacity 0.2s ease;
+}
+.footer-credit a:hover {
+  opacity: 0.85;
+}
+.footer-credit .brand-r3 {
+  color: #E2A24C;
+}
+.footer-credit .brand-tech {
+  color: #057fda;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width:980px){
+  .hero-grid{ grid-template-columns:1fr; gap:48px; }
+  .hero-visual{ order:-1; max-width:420px; margin:0 auto; }
+  .menu-layout{ grid-template-columns:1fr; }
+  .contact-grid{ grid-template-columns:1fr; }
+  .features{ grid-template-columns:1fr; }
+  .feature{ border-right:none; border-bottom:1px solid var(--line); }
+  .feature:last-child{ border-bottom:none; }
+}
+
+@media (max-width:760px){
+  .nav-links{ display:none; }
+  .nav-cta .btn{ display:none; }
+  .burger{ display:flex; }
+  #about{ padding:140px 0 72px; }
+  .combo-cols{ grid-template-columns:1fr; gap:8px; }
+  #menu, #find-us{ padding:80px 0; }
+}
+
+@media (max-width:480px){
+  .hero-actions .btn{ width:100%; }
+  .hero-actions{ flex-direction:column; }
+  .special-prices{ gap:20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#about" class="brand">
+      <img src="logo.png" alt="Cafe Mocha Logo" class="mark">
+      <span class="word">CAFE <b>MOCHA</b></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="#find-us" class="btn btn-primary">Get Directions</a>
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#find-us" class="btn btn-primary">Get Directions</a>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="hero-grid">
+
+      <div class="hero-copy">
+        <span class="script">good coffee, no detour required</span>
+        <h1>Worth pulling<br>over <span>for.</span></h1>
+        <p>
+          Cafe Mocha is the coffee bar tucked into the Engen forecourt on North Reef Road,
+          Sunnyrock proof that a proper cappuccino doesn't need a city address. We pull real
+          espresso, toast the pies, and keep a warm corner going for early starts, lunch
+          breaks, and everyone just passing through.
+        </p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-primary">View The Menu</a>
+          <a href="#find-us" class="btn btn-ghost">Find Us</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <img src="logo.png" alt="Cafe Mocha Logo" class="neon-logo">
+      </div>
+
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 9h15a3 3 0 010 6h-1M3 9v7a2 2 0 002 2h9a2 2 0 002-2V9M3 9l1-4h13l1 4M7 3v2M11 3v2"/></svg>
+        <h3>Brewed properly</h3>
+        <p>Real espresso and steamed milk no shortcuts, no instant granules.</p>
+      </div>
+      <div class="feature">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 13c0-5 4-9 9-9s9 4 9 9M3 13h18M3 13l1 7h16l1-7"/></svg>
+        <h3>Baked fresh daily</h3>
+        <p>Pies, samoosas, muffins and scones, restocked every morning.</p>
+      </div>
+      <div class="feature">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <h3>On your way, anytime</h3>
+        <p>Quick pit stop or a few minutes to sit right on North Reef Road.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="container">
+
+    <div class="section-head">
+      <span class="eyebrow no-circle">Menu</span>
+      <h2>What's brewing</h2>
+      <p>Every hot drink is served Regular or Large.</p>
+    </div>
+
+    <div class="menu-block">
+      <div class="menu-block-head">
+        <h3>Hot Drinks</h3>
+        <span>Regular · Large</span>
+      </div>
+
+      <div class="menu-layout">
+        <table class="drinks-table">
+          <thead>
+            <tr><th>Drink</th><th>Regular</th><th>Large</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Cappuccino</td><td class="price">R12</td><td class="price">R19</td></tr>
+            <tr><td>Mocha</td><td class="price">R18</td><td class="price">R21</td></tr>
+            <tr><td>Americano</td><td class="price">R10</td><td class="price">R13</td></tr>
+            <tr><td>Hot Chocolate</td><td class="price">R16</td><td class="price">R20</td></tr>
+            <tr><td>Coffee with Milk</td><td class="price">R11</td><td class="price">R15</td></tr>
+            <tr><td>Espresso</td><td class="price">R7</td><td class="price">R11</td></tr>
+          </tbody>
+        </table>
+
+        <div class="special-card">
+          <span class="script">for coffee lovers</span>
+          <h3>The Special Cappuccino</h3>
+          <p>Our house cappuccino, taken up a notch the one regulars keep coming back for.</p>
+          <div class="special-prices">
+            <div><span class="label">Regular</span><span class="amount">R17</span></div>
+            <div><span class="label">Large</span><span class="amount">R25</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-block">
+      <div class="menu-block-head">
+        <h3>Bites</h3>
+        <span>Food & cold drinks</span>
+      </div>
+
+      <div class="combo-cols">
+        <div class="combo-group">
+          <h4>Savoury & Fresh</h4>
+          <div class="combo-row"><span>Any Large Pie</span><span class="price">R29</span></div>
+          <div class="combo-row"><span>4 Samoosas</span><span class="price">R25</span></div>
+          <div class="combo-row"><span>Cheese & Tomato</span><span class="price">R20</span></div>
+          <div class="combo-row"><span>Egg & Mayo</span><span class="price">R25</span></div>
+          <div class="combo-row"><span>Tuna & Mayo</span><span class="price">R28</span></div>
+          <div class="combo-row"><span>Cold Meat & Mayo</span><span class="price">R30</span></div>
+        </div>
+        
+        <div class="combo-group">
+          <h4>Sweet, Sides & Drinks</h4>
+          <div class="combo-row"><span>Large Muffin</span><span class="price">R18</span></div>
+          <div class="combo-row"><span>Large Scone</span><span class="price">R6</span></div>
+          <div class="combo-row"><span>Large Vetkoek</span><span class="price">R5</span></div>
+          <div class="combo-row"><span>Boiled Egg</span><span class="price">R4</span></div>
+          <div class="combo-row"><span>330ml Pepsi / Miranda</span><span class="price">R8</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-block">
+      <div class="menu-block-head">
+        <h3>Combos</h3>
+        <span>Bite + drink, bundled</span>
+      </div>
+
+      <div class="combo-cols">
+        <div class="combo-group">
+          <h4>Combo includes: Large Cappuccino</h4>
+          <div class="combo-row"><span>Large Pie</span><span class="price">R41</span></div>
+          <div class="combo-row"><span>4 Samoosas</span><span class="price">R39</span></div>
+          <div class="combo-row"><span>Cheese & Tomato</span><span class="price">R34</span></div>
+          <div class="combo-row"><span>Egg & Mayo</span><span class="price">R42</span></div>
+          <div class="combo-row"><span>Cold Meat & Mayo</span><span class="price">R44</span></div>
+          <div class="combo-row"><span>Large Muffin</span><span class="price">R35</span></div>
+        </div>
+        <div class="combo-group">
+          <h4>Combo includes: 330ml Pepsi</h4>
+          <div class="combo-row"><span>Large Pie</span><span class="price">R35</span></div>
+          <div class="combo-row"><span>4 Samoosas</span><span class="price">R31</span></div>
+          <div class="combo-row"><span>Cheese & Tomato</span><span class="price">R26</span></div>
+          <div class="combo-row"><span>Egg & Mayo</span><span class="price">R31</span></div>
+          <div class="combo-row"><span>Tuna & Mayo</span><span class="price">R34</span></div>
+          <div class="combo-row"><span>Cold Meat & Mayo</span><span class="price">R36</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="find-us">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow no-circle">Find Us</span>
+      <h2>Pull in off North Reef Road</h2>
+      <p>Inside the Engen Sunnyrock forecourt easy in, easy out, parking right at the door.</p>
+    </div>
+
+    <div class="map-frame">
+      <iframe
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Engen+Sunnyrock+Motors,140+North+Reef+Road,Sunnyrock,Germiston,1401&output=embed"
+        title="Cafe Mocha location map">
+      </iframe>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        <h3>Address</h3>
+        <div class="value">140 North Reef Road<br>Sunnyrock, Germiston, 1401<br>at Engen Sunnyrock</div>
+      </div>
+
+      <div class="contact-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.95.32 1.88.57 2.78a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.25 1.83.44 2.78.57A2 2 0 0122 16.92z"/></svg>
+        <h3>Contact</h3>
+        <div class="value">
+          <a href="tel:+27748332221">074 833 2221</a><br>
+          <a href="mailto:hello@cafemocha.co.za">hello@cafemocha.co.za</a>
+        </div>
+        <span class="note">Email is a placeholder swap in the real address.</span>
+      </div>
+
+      <div class="contact-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <h3>Hours</h3>
+        <div class="value">
+          Mon to Thu: 06:30 to 15:00<br>
+          Friday: 06:30 to 12:45, 13:15 to 15:00<br>
+          Sat & Sun: Closed
+        </div>
+        <span class="note"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-row">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Cafe Mocha Logo" class="mark">
+      <span>Cafe Mocha</span>
+    </div>
+    <span class="script">see you on North Reef Road</span>
+    <span class="footer-meta">© 2026 Cafe Mocha · Engen Sunnyrock, Germiston</span>
+  </div>
+  
+  <div class="container footer-credit">
+    Created by <a href="https://r3bootedtech.co.za" target="_blank"><span class="brand-r3">R3BOOTED</span> <span class="brand-tech">TECHNOLOGY</span></a>
+  </div>
+</footer>
+
+<script>
+// Mobile nav toggle
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('active');
+  burger.setAttribute('aria-expanded', isOpen);
+});
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    burger.classList.remove('active');
+    burger.setAttribute('aria-expanded', false);
+  });
+});
+
+// Premium High Performance Slow Scroll Animation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    
+    if (targetElement) {
+      const headerOffset = 80; // Spaces layout beautifully beneath fixed navigation
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      const startPosition = window.pageYOffset;
+      const distance = offsetPosition - startPosition;
+      const duration = 1200; // Time in milliseconds (1.2 seconds for an elegant slow glide)
+      let startTimestamp = null;
+      
+      function step(timestamp) {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const elapsed = timestamp - startTimestamp;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Linear ease in out mathematical progression curve
+        const easeInOutCubic = progress < 0.5 
+          ? 4 * progress * progress * progress 
+          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+        
+        window.scrollTo(0, startPosition + distance * easeInOutCubic);
+        
+        if (elapsed < duration) {
+          window.requestAnimationFrame(step);
+        }
+      }
+      
+      window.requestAnimationFrame(step);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
