@@ -15,22 +15,19 @@
    TOKENS
    ============================================ */
 :root{
-  /* colour sampled from the neon shop sign */
-  --bg:           #0a0a0b;   /* base charcoal-black */
-  --bg-elevated:  #141417;   /* card surface */
-  --bg-elevated-2:#1c1c20;   /* card surface, hover/active */
+  --bg:           #0a0a0b;
+  --bg-elevated:  #141417;
+  --bg-elevated-2:#1c1c20;
   --line:         rgba(255,255,255,0.09);
   --line-strong:  rgba(255,255,255,0.16);
 
-  --text:         #f5f5f2;   /* off-white body copy */
-  --text-muted:   #a4a4aa;   /* secondary copy */
+  --text:         #f5f5f2;
+  --text-muted:   #a4a4aa;
 
-  /* Updated colors based on R3BOOTED logo */
   --orange:       #E2A24C;   
   --orange-soft:  #ebb971;
   --orange-glow:  rgba(226, 162, 76, 0.45);
 
-  /* New Deep Blue Color Palette */
   --blue:         #057fda;   
   --blue-soft:    #3299ee;
   --blue-glow:    rgba(5, 127, 218, 0.45);
@@ -89,7 +86,6 @@ section{ position:relative; }
   background:var(--orange);
   box-shadow:0 0 10px 2px var(--orange-glow);
 }
-/* Utility class to hide the orange dot */
 .eyebrow.no-circle::before {
   display: none;
 }
@@ -134,7 +130,7 @@ p{ color:var(--text-muted); max-width:54ch; }
 .btn:focus-visible{ outline:2px solid var(--blue-soft); outline-offset:3px; }
 .btn-primary{
   background:var(--blue);
-  color:#fff; /* Changed to white for excellent readability on the richer blue background */
+  color:#fff;
   box-shadow:0 0 0 0 var(--blue-glow);
 }
 .btn-primary:hover{
@@ -179,7 +175,6 @@ header{
   font-size:1.15rem;
   letter-spacing:.01em;
 }
-/* Added border-radius and object-fit to crop the image */
 .brand .mark{ width:42px; height:42px; flex-shrink:0; border-radius: 50%; object-fit: cover; }
 .brand .word b{ color:var(--orange); }
 
@@ -274,7 +269,6 @@ header{
 }
 .neon-logo{ width:100%; max-width:480px; margin:0 auto; height:auto; }
 
-
 /* feature strip */
 .features{
   display:grid;
@@ -321,7 +315,6 @@ header{
 }
 .menu-block-head span{ color:var(--text-muted); font-size:.85rem; }
 
-/* hot drinks table */
 .drinks-table{ width:100%; border-collapse:collapse; }
 .drinks-table thead th{
   text-align:left;
@@ -359,11 +352,9 @@ header{
 .special-card h3{ font-size:1.25rem; margin-bottom:8px; color:var(--text); }
 .special-card p{ font-size:.92rem; margin-bottom:20px; }
 .special-prices{ display:flex; gap:28px; }
-.special-prices div{ }
 .special-prices .label{ display:block; font-size:.78rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; }
 .special-prices .amount{ font-family:var(--font-display); font-size:1.7rem; font-weight:700; color:var(--orange); }
 
-/* combos */
 .combo-cols{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -400,6 +391,14 @@ header{
 }
 .combo-row .price{ font-family:var(--font-display); font-weight:600; color:var(--text); white-space:nowrap; }
 
+.promo-card {
+  background: linear-gradient(165deg, rgba(226, 162, 76, 0.12), rgba(226, 162, 76, 0.02)) !important;
+  border: 1px solid rgba(226, 162, 76, 0.3) !important;
+}
+.promo-card .script {
+  color: var(--orange-soft) !important;
+}
+
 /* ============================================
    FIND US
    ============================================ */
@@ -433,29 +432,47 @@ header{
 .contact-card .note{ display:block; margin-top:8px; font-size:.78rem; color:var(--text-muted); font-style:italic; }
 
 /* ============================================
-   FOOTER
+   FOOTER (Updated Layout)
    ============================================ */
 footer{
   border-top:1px solid var(--line);
-  padding:48px 0 36px;
+  padding:48px 0 48px;
 }
 .footer-row{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  flex-wrap:wrap;
   gap:20px;
 }
+
+/* 3 Equal Columns to perfectly center the middle block */
+.footer-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+.footer-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.footer-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+}
+
 .footer-brand{ display:flex; align-items:center; gap:12px; }
-/* Added border-radius and object-fit to crop the image */
 .footer-brand .mark{ width:34px; height:34px; border-radius: 50%; object-fit: cover; }
 .footer-brand span{ font-family:var(--font-display); font-weight:700; }
-footer .script{ font-size:1.1rem; }
-.footer-meta{ color:var(--text-muted); font-size:.85rem; }
+
+footer .script{ font-size:1.15rem; }
 
 .footer-credit {
-  text-align: center;
-  margin-top: 40px;
   font-size: 0.85rem;
   color: var(--text-muted);
   letter-spacing: 0.05em;
@@ -475,6 +492,8 @@ footer .script{ font-size:1.1rem; }
   color: #057fda;
 }
 
+.footer-meta{ color:var(--text-muted); font-size:.85rem; line-height: 1.5; }
+
 /* ============================================
    RESPONSIVE
    ============================================ */
@@ -486,6 +505,16 @@ footer .script{ font-size:1.1rem; }
   .features{ grid-template-columns:1fr; }
   .feature{ border-right:none; border-bottom:1px solid var(--line); }
   .feature:last-child{ border-bottom:none; }
+  
+  /* Stack the footer cleanly on smaller screens */
+  .footer-row {
+    flex-direction: column;
+    gap: 36px;
+  }
+  .footer-left, .footer-center, .footer-right {
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 @media (max-width:760px){
@@ -493,7 +522,7 @@ footer .script{ font-size:1.1rem; }
   .nav-cta .btn{ display:none; }
   .burger{ display:flex; }
   #about{ padding:140px 0 72px; }
-  .combo-cols{ grid-template-columns:1fr; gap:8px; }
+  .combo-cols{ grid-template-columns:1fr; gap:18px; }
   #menu, #find-us{ padding:80px 0; }
 }
 
@@ -542,7 +571,7 @@ footer .script{ font-size:1.1rem; }
         <h1>Worth pulling<br>over <span>for.</span></h1>
         <p>
           Cafe Mocha is the coffee bar tucked into the Engen forecourt on North Reef Road,
-          Sunnyrock proof that a proper cappuccino doesn't need a city address. We pull real
+          Sunnyrock, proof that a proper cappuccino does not need a city address. We pull real
           espresso, toast the pies, and keep a warm corner going for early starts, lunch
           breaks, and everyone just passing through.
         </p>
@@ -562,12 +591,12 @@ footer .script{ font-size:1.1rem; }
       <div class="feature">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 9h15a3 3 0 010 6h-1M3 9v7a2 2 0 002 2h9a2 2 0 002-2V9M3 9l1-4h13l1 4M7 3v2M11 3v2"/></svg>
         <h3>Brewed properly</h3>
-        <p>Real espresso and steamed milk no shortcuts, no instant granules.</p>
+        <p>Real espresso and steamed milk, no shortcuts, no instant granules.</p>
       </div>
       <div class="feature">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 13c0-5 4-9 9-9s9 4 9 9M3 13h18M3 13l1 7h16l1-7"/></svg>
         <h3>Baked fresh daily</h3>
-        <p>Pies, samoosas, muffins and scones, restocked every morning.</p>
+        <p>Pies, samoosas, muffins and more, restocked every morning.</p>
       </div>
       <div class="feature">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
@@ -583,8 +612,36 @@ footer .script{ font-size:1.1rem; }
 
     <div class="section-head">
       <span class="eyebrow no-circle">Menu</span>
-      <h2>What's brewing</h2>
-      <p>Every hot drink is served Regular or Large.</p>
+      <h2>What is brewing & cooking</h2>
+      <p>Every hot drink is served Regular or Large. Hearty, fresh meals prepared daily.</p>
+    </div>
+
+    <div class="menu-block">
+      <div class="menu-block-head">
+        <h3>Flame Grilled Specials</h3>
+        <span>Good Food, Great Mood</span>
+      </div>
+      <div class="combo-cols">
+        
+        <div class="special-card promo-card">
+          <span class="script">Fresh. Hot. Delicious.</span>
+          <h3>1/4 Chicken, Pap & Chakalaka Combo</h3>
+          <p>Flame grilled to perfection, served with authentic pap, spicy chakalaka, and a refreshing 330ml Pepsi.</p>
+          <div class="special-prices">
+            <div><span class="label">Full Combo Meal</span><span class="amount">R60</span></div>
+          </div>
+        </div>
+
+        <div class="special-card promo-card">
+          <span class="script">Made with care</span>
+          <h3>1/4 Chicken, Pap & Chakalaka</h3>
+          <p>Flame grilled to perfection, served with a generous portion of traditional pap and rich chakalaka.</p>
+          <div class="special-prices">
+            <div><span class="label">Meal Only</span><span class="amount">R55</span></div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <div class="menu-block">
@@ -611,7 +668,7 @@ footer .script{ font-size:1.1rem; }
         <div class="special-card">
           <span class="script">for coffee lovers</span>
           <h3>The Special Cappuccino</h3>
-          <p>Our house cappuccino, taken up a notch the one regulars keep coming back for.</p>
+          <p>Our house cappuccino, taken up a notch, the one regulars keep coming back for.</p>
           <div class="special-prices">
             <div><span class="label">Regular</span><span class="amount">R17</span></div>
             <div><span class="label">Large</span><span class="amount">R25</span></div>
@@ -640,8 +697,7 @@ footer .script{ font-size:1.1rem; }
         <div class="combo-group">
           <h4>Sweet, Sides & Drinks</h4>
           <div class="combo-row"><span>Large Muffin</span><span class="price">R18</span></div>
-          <div class="combo-row"><span>Large Scone</span><span class="price">R6</span></div>
-          <div class="combo-row"><span>Large Vetkoek</span><span class="price">R5</span></div>
+          <div class="combo-row"><span>Vetkoek</span><span class="price">R2</span></div>
           <div class="combo-row"><span>Boiled Egg</span><span class="price">R4</span></div>
           <div class="combo-row"><span>330ml Pepsi / Miranda</span><span class="price">R8</span></div>
         </div>
@@ -684,7 +740,7 @@ footer .script{ font-size:1.1rem; }
     <div class="section-head">
       <span class="eyebrow no-circle">Find Us</span>
       <h2>Pull in off North Reef Road</h2>
-      <p>Inside the Engen Sunnyrock forecourt easy in, easy out, parking right at the door.</p>
+      <p>Inside the Engen Sunnyrock forecourt, easy in, easy out.</p>
     </div>
 
     <div class="map-frame">
@@ -710,7 +766,7 @@ footer .script{ font-size:1.1rem; }
           <a href="tel:+27748332221">074 833 2221</a><br>
           <a href="mailto:hello@cafemocha.co.za">hello@cafemocha.co.za</a>
         </div>
-        <span class="note">Email is a placeholder swap in the real address.</span>
+        <span class="note">Email is a placeholder, swap in the real address.</span>
       </div>
 
       <div class="contact-card">
@@ -719,7 +775,8 @@ footer .script{ font-size:1.1rem; }
         <div class="value">
           Mon to Thu: 06:30 to 15:00<br>
           Friday: 06:30 to 12:45, 13:15 to 15:00<br>
-          Sat & Sun: Closed
+          Sat: 08:00 to 15:00<br>
+          Sun: Closed
         </div>
         <span class="note"></span>
       </div>
@@ -729,21 +786,29 @@ footer .script{ font-size:1.1rem; }
 
 <footer>
   <div class="container footer-row">
-    <div class="footer-brand">
-      <img src="logo.png" alt="Cafe Mocha Logo" class="mark">
-      <span>Cafe Mocha</span>
+    
+    <div class="footer-left">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Cafe Mocha Logo" class="mark">
+        <span>Cafe Mocha</span>
+      </div>
     </div>
-    <span class="script">see you on North Reef Road</span>
-    <span class="footer-meta">© 2026 Cafe Mocha · Engen Sunnyrock, Germiston</span>
-  </div>
-  
-  <div class="container footer-credit">
-    Created by <a href="https://r3bootedtech.co.za" target="_blank"><span class="brand-r3">R3BOOTED</span> <span class="brand-tech">TECHNOLOGY</span></a>
+
+    <div class="footer-center">
+      <span class="script">see you on North Reef Road</span>
+      <div class="footer-credit">
+        Created by <a href="https://r3bootedtech.co.za" target="_blank"><span class="brand-r3">R3BOOTED</span> <span class="brand-tech">TECHNOLOGY</span></a>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <span class="footer-meta">© 2026 Cafe Mocha<br>Engen Sunnyrock, Germiston</span>
+    </div>
+
   </div>
 </footer>
 
 <script>
-// Mobile nav toggle
 const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
 burger.addEventListener('click', () => {
@@ -759,7 +824,6 @@ mobileMenu.querySelectorAll('a').forEach(link => {
   });
 });
 
-// Premium High Performance Slow Scroll Animation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
@@ -767,13 +831,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const targetElement = document.querySelector(targetId);
     
     if (targetElement) {
-      const headerOffset = 80; // Spaces layout beautifully beneath fixed navigation
+      const headerOffset = 80;
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
       
       const startPosition = window.pageYOffset;
       const distance = offsetPosition - startPosition;
-      const duration = 1200; // Time in milliseconds (1.2 seconds for an elegant slow glide)
+      const duration = 1200;
       let startTimestamp = null;
       
       function step(timestamp) {
@@ -781,7 +845,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const elapsed = timestamp - startTimestamp;
         const progress = Math.min(elapsed / duration, 1);
         
-        // Linear ease in out mathematical progression curve
         const easeInOutCubic = progress < 0.5 
           ? 4 * progress * progress * progress 
           : 1 - Math.pow(-2 * progress + 2, 3) / 2;
